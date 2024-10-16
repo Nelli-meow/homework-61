@@ -22,7 +22,7 @@ const Countries = () => {
         {countries.map((country) => (
           <li
             key={country.id}
-            className="list-group-item border border-bottom-2 m-3"
+            className="list-group-item"
           >{country.name}</li>
         ))}
       </ul>
