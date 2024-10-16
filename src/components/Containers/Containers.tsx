@@ -1,10 +1,14 @@
 import Countries from '../Countries/Countries.tsx';
+import CountryInfo from '../CountryInfo/CountryInfo.tsx';
 
 const Containers = () => {
   return (
-    <div className="d-flex flex-row align-items-center border p-3">
-      <div className="overflow-auto" style={{maxHeight: '600px'}}>
+    <div className="row border border-3">
+      <div className="overflow-auto col-4" style={{maxHeight: '600px'}}>
         <Countries/>
+      </div>
+      <div className="col">
+        <CountryInfo/>
       </div>
     </div>
   );
