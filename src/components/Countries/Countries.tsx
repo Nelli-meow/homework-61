@@ -1,27 +1,32 @@
 import * as React from 'react';
 import { URL_ALPHA_CODE, URL_COUNTRIES } from '../../constants.ts';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const Countries = () => {
+const Countries = ({setCountryInfo}) => {
   const [countries, setCountries] = useState([]);
 
   const getAllCountries = async () => {
-    const dataCountries = await fetch(URL_COUNTRIES);
-    const response = await dataCountries.json();
-
-    setCountries(response);
-  }
+    try {
+      const response = await axios(URL_COUNTRIES);
+      setCountries(response.data);
+    } catch (error) {
+      console.log( error);
+    }
+  };
 
   useEffect(() => {
-    getAllCountries();
+    void getAllCountries();
   }, []);
 
   const getCountryInfo = async (alphaCode) => {
-    const dataCountry = await fetch(`${URL_ALPHA_CODE}${alphaCode}`);
-    const response = await dataCountry.json();
-    console.log(response.name);
-  }
-
+    try {
+      const response = await axios(`${URL_ALPHA_CODE}${alphaCode}`);
+      setCountryInfo(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -35,6 +40,7 @@ const Countries = () => {
         ))}
       </ul>
     </div>
+
   );
 };
 
